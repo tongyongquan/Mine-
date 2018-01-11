@@ -1,7 +1,7 @@
 # encoding: utf-8
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-from Mine import app,db
+from Mine_bysj import app,db
 from models import *
 
 manager = Manager(app)
