@@ -1,4 +1,5 @@
 # encoding: utf-8
+import os
 
 #开启debug模式
 DEBUG = True
@@ -14,3 +15,9 @@ DATABASE = 'Mine'
 SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT, DRIVER, USERNAME, PASSWORD, HOST, PORT,
                                                                        DATABASE)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+#设置session的安全密匙
+SECRET_KEY = os.urandom(4)
+
+# 用户session的过期时间 天
+session_lifetime = 5
