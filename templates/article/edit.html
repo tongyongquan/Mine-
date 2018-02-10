@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    发布文章
+    编辑笔记
 {% endblock %}
 
 {% block head %}
@@ -11,7 +11,7 @@
 
     <div class="container">
         <h3>
-            添加文章
+            编辑笔记
         </h3>
         <form action="{{ url_for('article_edit',article_id=article.id) }}" class="form" enctype="multipart/form-data"
               method="post">
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label>类型:</label>
                         <select class="form-control info" name="label_id">
-                            {% for label in all_label %}
+                            {% for label in page_content['nav_label'] %}
                                 <option value="{{ label.id }}" {% if label.id==article.label_id %} selected {% endif %}>
                                     {{ label.name }}
                                 </option>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="立即发布">
+                <input type="submit" class="btn btn-primary" value="保存">
             </div>
 
         </form>

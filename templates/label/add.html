@@ -1,0 +1,38 @@
+{% extends'base.html' %}
+
+{% block title %}
+    添加标签
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/login_register.css') }}">
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <form action="{{ url_for('label_add') }}" method="post">
+            <div class="row ">
+                <div class="col-md-6">
+                    <div class="form-group  ">
+                        <label>名称:</label>
+                        <input type="text" name="name" class="form-control info">
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label>父级标签:</label>
+                        <select class="form-control info" name="parent_id">
+                            <option value="">无</option>
+                            {% for label in all_label %}
+                                <option value="{{ label.id }}">{{ label.name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">添加</button>
+        </form>
+    </div>
+{% endblock %}

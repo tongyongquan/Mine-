@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block main %}
+        <ul>
+        {% for article in  articles %}
+            <li>
+                <div class="">
+
+                    <div class="question-group">
+                        <h4>
+                            <a href="{{ url_for('article',article_id=article.id) }}">{{ article.title }}</a>
+                        </h4>
+                        <p class="question-content">{{ article.info }}</p>
+                        <div class="question-info">
+                            <span class="question-author">{{ article.author.username }}</span>
+                            <span class="glyphicon glyphicon-time">{{ article.create_time }}</span>
+                            <span><a href="{{ url_for('article_edit',article_id=article.id) }}">修改</a></span>
+                            <span><a href="{{ url_for('article_delete',article_id=article.id) }}">删除</a></span>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
