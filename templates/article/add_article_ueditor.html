@@ -4,57 +4,64 @@
 {% endblock %}
 
 {% block head %}
-{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/add.css') }}">#}
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/add_edit.css') }}">
 {% endblock %}
 
 {% block main %}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">添加笔记</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <form action="{{ url_for('article_add') }}" class="form"
+                  enctype="multipart/form-data" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group  ">
+                            <label>名称:</label>
+                            <input type="text" name="title"
+                                   class="form-control info">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
 
-    <div class="container">
-        <h3>
-            添加笔记
-        </h3>
-        <form action="{{ url_for('article_add') }}" class="form"
-              enctype="multipart/form-data" method="post">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group  ">
-                        <label>名称:</label>
-                        <input type="text" name="title"
-                               class="form-control info">
+                        <div class="form-group">
+                            <label>类型:</label>
+                            <select class="form-control info" name="label_id">
+                                {% for label in page_content['nav_label'] %}
+                                    <option value="{{ label.id }}">{{ label.name }}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            <label>简介:</label>
+                            <input type="text" name="info"
+                                   class="form-control info2"
+                                   maxlength="65525">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        <label>类型:</label>
-                        <select class="form-control info" name="label_id">
-                            {% for label in page_content['nav_label'] %}
-                                <option value="{{ label.id }}">{{ label.name }}</option>
-                            {% endfor %}
-
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>内容:</label>
+                    <textarea class="text-container" id="editor" cols="30"
+                              rows="10" name="content"
+                              style="width:98%;height: 200px;overflow:hidden;"></textarea>
                 </div>
 
-            </div>
-            <div class="form-group">
-                <label>简介:</label>
-                <input type="text" name="info" class="form-control"
-                       maxlength="65525">
-            </div>
-            <div class="form-group">
-                <label>内容:</label>
-                <textarea id="editor" cols="30" rows="10" name="content"
-                          style="height: 400px"></textarea>
-            </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="保存">
+                </div>
 
-
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="保存">
-            </div>
-
-        </form>
+            </form>
+        </div>
+        <!-- /.box-body -->
     </div>
+    <!-- /.box -->
 {% endblock %}
 
 {% block js %}

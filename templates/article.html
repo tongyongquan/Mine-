@@ -1,46 +1,48 @@
 {% extends 'base.html' %}
 {% block title %}
-    详情
+    详情-{{ article.title }}
 {% endblock %}
 
 {% block head %}
-{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/article.css') }}">#}
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/article.css') }}">
 {% endblock %}
 
 {% block main %}
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
+                    <div class="page-header">
+                        <h1 class="article-title">{{ article.title }}</h1>
+                        <h3>
+                            <small class="article-info">
+                                作者:{{ article.author.username+'  ' }}发布时间:{{ article.create_time }}</small>
+                        </h3>
+                    </div>
+                  <h4><small>简介:</small></h4>
+                    <div class="">
+                        {{ article.info }}
+                    </div>
+                    <hr>
+                    <div id="box" style="display: none">
+                        {{ article.content }}
+                    </div>
+                    <div id="article">
 
-                <div class="page-header">
-                    <h1 class="article-title">{{ article.title }}</h1>
-                    <h3>
-                        <small class="article-info">
-                            作者:{{ article.author.username+'  ' }}发布时间:{{ article.create_time }}</small>
-                    </h3>
+                    </div>
+                    <script>
+                        {#                                    document.getElementById('box').innerHTML="{{ article.content }}";#}
+                        document.getElementById('article').innerHTML = document.getElementById('box').innerText
+
+                    </script>
+
+
                 </div>
-
-                <div class="jumbotron">
-                    {{ article.info }}
-                </div>
-                <div id="box" style="display: none">
-                    {{  article.content }}
-                </div>
-                <div id="article" >
-
-                </div>
-                <script>
-{#                                    document.getElementById('box').innerHTML="{{ article.content }}";#}
-                    document.getElementById('article').innerHTML = document.getElementById('box').innerText
-
-                </script>
-
-
             </div>
         </div>
     </div>
-
+    <!-- /.box -->
 
 {% endblock %}
 

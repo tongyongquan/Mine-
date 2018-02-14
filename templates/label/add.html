@@ -1,38 +1,93 @@
 {% extends'base.html' %}
 
 {% block title %}
-    添加标签
+    标签设置
 {% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/login_register.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/label.css') }}">
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <form action="{{ url_for('label_add') }}" method="post">
-            <div class="row ">
-                <div class="col-md-6">
-                    <div class="form-group  ">
-                        <label>名称:</label>
-                        <input type="text" name="name" class="form-control info">
-                    </div>
-                </div>
-                <div class="col-md-6">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">标签列表</h3>
+        </div>
+        <!-- /.box-header -->
 
-                    <div class="form-group">
-                        <label>父级标签:</label>
-                        <select class="form-control info" name="parent_id">
-                            <option value="">无</option>
-                            {% for label in all_label %}
-                                <option value="{{ label.id }}">{{ label.name }}</option>
-                            {% endfor %}
+        <div class="box-body">
 
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">添加</button>
-        </form>
+                    <table id="example2" class="table table-hover table-striped">
+                {#       table table-bordered table-hover#}
+                <thead>
+                <tr>
+                    <th>标签名</th>
+
+                    <th>修改</th>
+                    <th>删除</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                    {% for navlabel in page_content['nav_label'] %}
+<tr>
+                        <td>{{ navlabel.name }}</td>
+                        <td>
+                            <a href="{{ url_for('label_edit',label_id=navlabel.id) }}"><i
+                                    class="fa fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('label_delete',label_id=navlabel.id)}}">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+                         </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
     </div>
+    <!-- /.box -->
+
+    <div class="box">
+        <div class="box-body">
+            <form action="{{ url_for('label_add') }}" method="post">
+                <div class="row ">
+                    <div class="col-md-6">
+                        <div class="form-group  ">
+                            <label>名称:</label>
+                            <input type="text" name="name"
+                                   class="form-control info">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label>父级:</label>
+                            <select class="form-control info" name="parent_id">
+                                <option value="">无</option>
+                                {% for label in page_content['nav_label'] %}
+                                    <option value="{{ label.id }}">{{ label.name }}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary label-btn">
+                            添加
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>    <!-- /.box-body -->
+
+    </div>
+    <!-- /.box -->
 {% endblock %}

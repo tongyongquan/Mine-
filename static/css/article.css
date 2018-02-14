@@ -1,0 +1,46 @@
+.form-container{
+
+    text-align: right;
+}
+
+
+.container .well a.label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.list-group-item .glyphicon-menu-right {
+    font-size: 1px;
+}
+
+a.list-group-item .list-group-item-heading, button.list-group-item .list-group-item-heading {
+    color: #2b669a;
+}
+.list-group-item-text{
+    text-indent: 2em;
+}
+
+.article-title{
+    text-align: center;
+}
+
+.article-info{
+    float: right;
+}
+
+.page-header{
+    overflow: hidden;
+}
+
+ul{
+    list-style: none;
+}
+
+.comment-content{
+    float: left;
+
+}
+
+#article img{
+    max-width: 100%;
+}

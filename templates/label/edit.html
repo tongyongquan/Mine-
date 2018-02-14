@@ -5,17 +5,22 @@
 {% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/login_register.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/login_register.css') }}">
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-    <form action="{{ url_for('label_edit',label_id=label.id) }}"  method="post">
+
+    <div class="box">
+    <div class="box-body">
+        <form action="{{ url_for('label_edit',label_id=label.id) }}"
+              method="post">
             <div class="row ">
                 <div class="col-md-6">
                     <div class="form-group  ">
                         <label>名称:</label>
-                        <input type="text" name="name" value="{{ label.name }}" class="form-control info">
+                        <input type="text" name="name" value="{{ label.name }}"
+                               class="form-control info">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -24,9 +29,10 @@
                         <label>父级标签:</label>
                         <select class="form-control info" name="parent_id">
                             <option value="">无</option>
-                            {% for temp in all_label %}
-                                <option value="{{ temp.id }}" {% if temp.id==label.parent_id %}
-                                    selected {% endif %}>{{ temp.name }}</option>
+                            {% for temp in page_content['nav_label'] %}
+                                <option value="{{ temp.id }}"
+                                        {% if temp.id==label.parent_id %}
+                                        selected {% endif %}>{{ temp.name }}</option>
                             {% endfor %}
 
                         </select>
@@ -35,5 +41,7 @@
             </div>
             <button type="submit" class="btn btn-primary">修改</button>
         </form>
+    </div>
+
     </div>
 {% endblock %}

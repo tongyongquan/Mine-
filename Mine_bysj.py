@@ -328,6 +328,8 @@ def article_edit(article_id):
         return redirect(url_for('index'))
 
 
+
+#修改标签
 @app.route('/label/edit/<label_id>', methods=['GET', 'POST'])
 @login_required
 def label_edit(label_id):
@@ -355,9 +357,9 @@ def label_edit(label_id):
         parent = Label.query.filter(Label.id == parent_id).first()
         label.parent = parent
         db.session.commit()
-        return redirect(url_for('admin'))
+        return redirect(url_for('label_add'))
 
-
+#增加标签
 @app.route('/label/add', methods=['GET', 'POST'])
 @login_required
 def label_add():
@@ -380,9 +382,9 @@ def label_add():
         label.parent = parent
         db.session.add(label)
         db.session.commit()
-        return redirect(url_for('admin'))
+        return redirect(url_for('label_add'))
 
-
+#删除标签
 @app.route('/label/delete/<label_id>')
 @login_required
 def label_delete(label_id):
@@ -394,7 +396,7 @@ def label_delete(label_id):
             child.parent = other_label
         db.session.delete(label)
         db.session.commit()
-    return redirect(url_for('admin'))
+    return redirect(url_for('label_add'))
 
 
 if __name__ == '__main__':
