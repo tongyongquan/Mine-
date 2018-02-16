@@ -27,10 +27,10 @@ app.jinja_env.auto_reload = True
 
 
 # 用户密码MD5加密
-def create_md5(str):
+def create_md5(str_passwd):
     import hashlib
     m = hashlib.md5()
-    m.update(str)
+    m.update(str_passwd.encode('utf8'))
     return m.hexdigest()
 
 

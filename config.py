@@ -6,7 +6,7 @@ DEBUG = True
 
 #SQLAlchemy连接数据库配置
 DIALECT = 'mysql'
-DRIVER = 'mysqldb'
+DRIVER = 'pymysql'   #'mysqldb'是python2的mysql驱动
 USERNAME = 'user'
 PASSWORD = 'happy100'
 HOST = '127.0.0.1'
